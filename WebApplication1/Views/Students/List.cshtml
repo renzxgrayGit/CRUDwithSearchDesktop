@@ -1,0 +1,39 @@
+﻿@{
+}
+
+@model List<WebApplication1.Models.Entities.Student>
+
+<h1>List of Students</h1>
+
+<form method="get" asp-action="List" asp-controller="Students">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by name" name="searchQuery" value="@ViewData["SearchQuery"]" />
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>Id</th>*@
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                @*<td>@student.Id</td>*@
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+                <td>
+                    <a class="btn btn-info text-light" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit / Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
